@@ -1,6 +1,7 @@
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import DotenvWebpackPlugin from "dotenv-webpack";
 
 export default (_env, argv) => {
   const prod = argv.mode === "production";
@@ -52,6 +53,7 @@ export default (_env, argv) => {
       ],
     },
     plugins: [
+      new DotenvWebpackPlugin(),
       new HtmlWebpackPlugin({ template: "public/index.html" }),
       !prod && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),

@@ -84,3 +84,6 @@ my-app/
 
 Happy coding!
 Feel free to peek into any config files when you’re curious—everything you need is right here.
+
+![alt text](image.png)
+![alt text](image-1.png)
