@@ -12,15 +12,21 @@ export default function WeatherApp() {
       setWeather(null);
       setLoading(true);
       try {
-        const apiKey = "88ef4b05bfc24ff888c01406252903";
-        const response = await fetch(
-          `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`
-        );
-        if (!response.ok) throw new Error("City not found");
+        const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+        console.log("API Key:", apiKey);
+        const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(
+          city
+        )}&aqi=no`;
+        console.log("Fetching URL:", url);
+        const response = await fetch(url);
         const data = await response.json();
+        console.log("Weather API response:", data);
+        if (!response.ok || data.error)
+          throw new Error(data.error?.message || "City not found");
         setWeather(data);
       } catch (err) {
         setError("Could not fetch weather. Please check the city name.");
+        console.error(err);
       } finally {
         setLoading(false);
       }
