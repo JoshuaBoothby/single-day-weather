@@ -55,7 +55,9 @@ export default (_env, argv) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        "process.env.WEATHER_KEY": JSON.stringify(process.env.WEATHER_KEY),
+        "process.env.REACT_APP_WEATHER_API_KEY": JSON.stringify(
+          process.env.REACT_APP_WEATHER_API_KEY
+        ),
       }),
       new DotenvWebpackPlugin(),
       new HtmlWebpackPlugin({ template: "public/index.html" }),
